@@ -9,4 +9,8 @@ A Nix setup for using Purescript without Nodejs.
 3. Use the functions from `purescript.nix` in your `default.nix`;
    see [`default.nix`](default.nix) here for an example.
 
+## Why not to use
+
+With this method, there is no automatic dependency resolution.
+
 [nix]: https://nixos.org/nix/
