@@ -1,6 +1,7 @@
 { cabal-install
 , coreutils
 , fetchurl
+, findutils
 , ghcWithPackages
 , stdenv
 }:
@@ -94,34 +95,64 @@ rec {
                 '';
         };
 
-    mergePackages = packages: stdenv.mkDerivation {
-        name = "merged-purescript-packages-0.1.0";
-        inherit packages;
+    linkMerge = stdenv.mkDerivation {
+        name = "link-merge-0.1.0";
         builder = builtins.toFile "builder.sh"
             ''
             source $stdenv/setup
-            mkdir -p $out/purs
-            for pkg in $packages; do
-                find $pkg/purs -type d |while read dir; do
-                    mkdir -p $out/''${dir#$pkg/}
+            mkdir -p $out/bin
+            substituteAll $src $out/bin/link-merge
+            chmod +x $out/bin/link-merge
+            '';
+        inherit coreutils;
+        inherit findutils;
+        src = builtins.toFile "link-merge"
+            ''
+            #!/bin/bash
+            set -euo pipefail
+            if [ $# -lt 2 ]; then
+                echo "usage: $0 subdirname target [input ...]" >&2
+                exit 2
+            fi
+            subdirname=$1
+            targetdir=$2
+            shift 2
+            @coreutils@/bin/mkdir -p $targetdir/$subdirname
+            for pkg in "$@"; do
+                if test ! -d $pkg/$subdirname; then continue; fi
+                @findutils@/bin/find $pkg/$subdirname -type d |
+                while read dir; do
+                    @coreutils@/bin/mkdir -p $targetdir/''${dir#$pkg/}
                 done
-                find $pkg/purs -type f -o -type l |while read file; do
-                    target=$(readlink -f $file)
-                    link=$out/''${file#$pkg/}
-                    if [ ! -e $link ]; then
-                        ln -s $target $link
-                    elif [ ! -h $link ]; then
-                        echo "clash: $link exists, not a symlink, but must also point to $target" >&2
+                @findutils@/bin/find $pkg/$subdirname -type f -o -type l |
+                while read file; do
+                    linktarget=$(@coreutils@/bin/readlink -f $file)
+                    link=$targetdir/''${file#$pkg/}
+                    if test ! -e $link; then
+                        @coreutils@/bin/ln -s $linktarget $link
+                    elif test ! -h $link; then
+                        echo "clash: $link exists, not a symlink, but must also point to $linktarget" >&2
                         exit 1
                     else
-                        existing=$(readlink -f $link)
-                        if [ $target != $existing ]; then
+                        existing=$(@coreutils@/bin/readlink -f $link)
+                        if test $linktarget != $existing; then
                             echo "clash: $link -> $existing, but must also point to $target" >&2
                             exit 1
                         fi
                     fi
                 done
             done
+            '';
+    };
+
+    mergePackages = packages: stdenv.mkDerivation {
+        name = "merged-purescript-packages-0.1.0";
+        inherit linkMerge;
+        inherit packages;
+        builder = builtins.toFile "builder.sh"
+            ''
+            source $stdenv/setup
+            $linkMerge/bin/link-merge purs $out $packages
             '';
     };
 

@@ -3,6 +3,7 @@ let nixpkgs = import <nixpkgs> {};
         inherit (nixpkgs) cabal-install;
         inherit (nixpkgs) coreutils;
         inherit (nixpkgs) fetchurl;
+        inherit (nixpkgs) findutils;
         inherit (nixpkgs.haskellPackages) ghcWithPackages;
         inherit (nixpkgs) stdenv;
     };
