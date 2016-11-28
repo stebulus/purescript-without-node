@@ -147,15 +147,14 @@ rec {
 
     mergePackages = packages: stdenv.mkDerivation {
         name = "merged-purescript-packages-0.1.0";
-        inherit linkMerge;
+        buildInputs = [ purescript linkMerge ];
         inherit packages;
-        inherit purescript;
         builder = builtins.toFile "builder.sh"
             ''
             source $stdenv/setup
-            $linkMerge/bin/link-merge purs $out $packages
-            $linkMerge/bin/link-merge output $out $packages
-            $purescript/bin/psc --output $out/output $out/purs/'**/*.'{purs,js}
+            link-merge purs $out $packages
+            link-merge output $out $packages
+            psc --output $out/output $out/purs/'**/*.'{purs,js}
             '';
     };
 
