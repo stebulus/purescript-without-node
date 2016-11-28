@@ -175,11 +175,13 @@ rec {
                 sha256 = "8f309918c9b7ff26542209756b2467ac9c6bbb81fb0a82f1ff3ce190c3f49c4c";
             })
         ];
-        prelude = githubSource {
-            name = "prelude";
-            version = "1.1.0";
-            sha256 = "5c931068e33fe9c08fc36bbad0e20701a919f14cc76be2dc146dae9f126ebfab";
-        };
+        prelude = mergePackages [
+            (githubSource {
+                name = "prelude";
+                version = "1.1.0";
+                sha256 = "5c931068e33fe9c08fc36bbad0e20701a919f14cc76be2dc146dae9f126ebfab";
+            })
+        ];
     };
 
     purescriptWithPackages = choosePackages: stdenv.mkDerivation {
