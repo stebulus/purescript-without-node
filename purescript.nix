@@ -91,7 +91,7 @@ rec {
                 source $stdenv/setup
                 tar xf $src
                 mkdir -p $out
-                cp -R $name/src $out/purs
+                cp -a $name/src $out/purs
                 '';
         };
 
@@ -149,10 +149,13 @@ rec {
         name = "merged-purescript-packages-0.1.0";
         inherit linkMerge;
         inherit packages;
+        inherit purescript;
         builder = builtins.toFile "builder.sh"
             ''
             source $stdenv/setup
             $linkMerge/bin/link-merge purs $out $packages
+            $linkMerge/bin/link-merge output $out $packages
+            $purescript/bin/psc --output $out/output $out/purs/'**/*.'{purs,js}
             '';
     };
 
@@ -189,12 +192,42 @@ rec {
             substituteAll $pscWrapper $out/bin/psc
             chmod +x $out/bin/psc
             ln -s $purescript/bin/psc-bundle $out/bin
+            ln -s $mergedPackages/output $out/output
             '';
         inherit coreutils;
         inherit purescript;
         pscWrapper = builtins.toFile "psc-wrapper"
             ''
             #!/bin/bash
+            outputdir() {
+                while test $# -gt 0 && test ! -v output; do
+                    case "$1" in
+                        --output | -o)
+                            if test $# -eq 1; then
+                                echo "$0: missing argument for --output/-o" >&2
+                                return 1
+                            fi
+                            output=$2
+                            break
+                            ;;
+                        --output=*)
+                            output=''${1#--output=}
+                            break
+                            ;;
+                        -o*)
+                            output=''${1#-o}
+                            break
+                            ;;
+                        *)
+                            ;;
+                    esac
+                    shift
+                done
+                echo ''${output:-./output}
+            }
+            d=$(outputdir "$@")
+            @coreutils@/bin/mkdir -p "$d"
+            @coreutils@/bin/cp -a @mergedPackages@/output/* "$d"
             @purescript@/bin/psc @mergedPackages@/purs/'**/*.'{js,purs} "$@"
             '';
         mergedPackages = mergePackages (choosePackages packages);
