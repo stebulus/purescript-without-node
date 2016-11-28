@@ -186,6 +186,15 @@ rec {
             })
         ];
 
+        "assert" = mergePackages [
+            eff
+            (githubSource {
+                name = "assert";
+                version = "2.0.0";
+                sha256 = "6516001fa2f0b4d07fc8ae549b5ac59c8f36ddfbfd8215ede3b56fd3784fa2e7";
+            })
+        ];
+
         bifunctors = mergePackages [
             control
             newtype
@@ -196,12 +205,46 @@ rec {
             })
         ];
 
+        catenable-lists = mergePackages [
+            control
+            foldable-traversable
+            lists
+            tuples
+            unfoldable
+            (githubSource {
+                name = "catenable-lists";
+                version = "3.0.1";
+                sha256 = "0cc03bdce06e4ff8eb58e8bc9de0e95ad8c70f3f8656dfc9a68f8566126d9cc6";
+            })
+        ];
+
         console = mergePackages [
             eff
             (githubSource {
                 name = "console";
                 version = "2.0.0";
                 sha256 = "0raqjwkdgl788lphljwmrzkpyaah60hra3nnb9wbhbf5qdk86c6k";
+            })
+        ];
+
+        const = mergePackages [
+            contravariant
+            foldable-traversable
+            (githubSource {
+                name = "const";
+                version = "2.0.0";
+                sha256 = "39086e2376d8a9d01fb718e407db6c27d5a481970103476d1a1b4a069d040145";
+            })
+        ];
+
+        contravariant = mergePackages [
+            either
+            monoid
+            tuples
+            (githubSource {
+                name = "contravariant";
+                version = "2.0.0";
+                sha256 = "e4a11a3e511da89dcd15250b2ab981f6af436d33a915da389099777a97d8ff83";
             })
         ];
 
@@ -277,6 +320,15 @@ rec {
 	    })
 	];
 
+        exists = mergePackages [
+            unsafe-coerce
+            (githubSource {
+                name = "exists";
+                version = "2.0.0";
+                sha256 = "8be8ba318df4fe7eac00ba5d0661aed7cbdd15c3816b541f2d6947d6fe22ea39";
+            })
+        ];
+
         foldable-traversable = mergePackages [
             bifunctors
             maybe
@@ -303,12 +355,35 @@ rec {
             })
         ];
 
+        free = mergePackages [
+            catenable-lists
+            exists
+            inject
+            transformers
+            unsafe-coerce
+            (githubSource {
+                name = "free";
+                version = "3.0.1";
+                sha256 = "1e375529bfa033bc9dd9f8e586d816d8196cbcd94ba2e98fbaf25cdcf75903eb";
+            })
+        ];
+
         functions = mergePackages [
             prelude
             (githubSource {
                 name = "functions";
                 version = "2.0.0";
                 sha256 = "1m417pz272bf4ailqjb0xpx6j6r0sblydia431vzvfpm1gzk6125";
+            })
+        ];
+
+        functors = mergePackages [
+            const
+            either
+            (githubSource {
+                name = "functors";
+                version = "1.0.0";
+                sha256 = "3f00f8944d0c89a9c57263b036173e1d4f1a208cf2fd0c58d44e244fda4b7f0d";
             })
         ];
 
@@ -325,6 +400,34 @@ rec {
             })
         ];
 
+        generics-rep = mergePackages [
+            monoid
+            prelude
+            (githubSource {
+                name = "generics-rep";
+                version = "3.0.0";
+                sha256 = "224928091b5ce4b191db5b45802fa31bb611f84321873c47aa3afdfa74381924";
+            })
+        ];
+
+        globals = mergePackages [
+            (githubSource {
+                name = "globals";
+                version = "2.0.0";
+                sha256 = "290fbbfb54c07708932e285172c43e7d08fde8796ad56f978b2dc62aeb8e0f2f";
+            })
+        ];
+
+        graphs = mergePackages [
+            catenable-lists
+            sets
+            (githubSource {
+                name = "graphs";
+                version = "2.0.0";
+                sha256 = "2455a0448b8f713d6aeb2c40e5c5a4beb6c17a5328bc278edb1b60e36b5e6c16";
+            })
+        ];
+
 	identity = mergePackages [
 	    foldable-traversable
 	    (githubSource {
@@ -333,6 +436,15 @@ rec {
 		sha256 = "60828516e975a2415bbd9455b81ad55a650a8e78aed40d1b8abf7ac348e0f268";
 	    })
 	];
+
+        inject = mergePackages [
+            functors
+            (githubSource {
+                name = "inject";
+                version = "3.0.0";
+                sha256 = "461cf3311acc07a7f8a5b11a9cb02cfac09fbe89bd1702e36a98eccbd2f0f08e";
+            })
+        ];
 
         integers = mergePackages [
             maybe
@@ -382,6 +494,18 @@ rec {
             })
         ];
 
+        maps = mergePackages [
+            arrays
+            functions
+            lists
+            st
+            (githubSource {
+                name = "maps";
+                version = "2.0.1";
+                sha256 = "8db4b97fd7653a49827c6a111527c9fbfe3c8929b592b1dab00c451d23b89aa7";
+            })
+        ];
+
         maybe = mergePackages [
             control
             invariant
@@ -422,6 +546,26 @@ rec {
             })
         ];
 
+        orders = mergePackages [
+            monoid
+            (githubSource {
+                name = "orders";
+                version = "2.0.0";
+                sha256 = "c4aedbaa5ed141860b0969bb572edf4188fa974239d795121a3a9dfc3081bdc4";
+            })
+        ];
+
+        parallel = mergePackages [
+            functors
+            refs
+            transformers
+            (githubSource {
+                name = "parallel";
+                version = "2.1.0";
+                sha256 = "6384cb320ab70a1a49f9f11da7a38624bddbbff92730afed10fa5151158dde89";
+            })
+        ];
+
         partial = mergePackages [
             (githubSource {
                 name = "partial";
@@ -438,11 +582,61 @@ rec {
             })
         ];
 
+        profunctor = mergePackages [
+            distributive
+            either
+            tuples
+            (githubSource {
+                name = "profunctor";
+                version = "2.0.0";
+                sha256 = "e3423c4ca7f6b3de8d54953abe0cd1781c3438296ab3ed5f642e705dafc68152";
+            })
+        ];
+
         proxy = mergePackages [
             (githubSource {
                 name = "proxy";
                 version = "1.0.0";
                 sha256 = "220ef0ff8a74f8aed2fd029e52b92b355980ed1bbe1989acaaa846cb177b00b6";
+            })
+        ];
+
+        random = mergePackages [
+            eff
+            integers
+            math
+            (githubSource {
+                name = "random";
+                version = "2.0.0";
+                sha256 = "2c53e95939d71d8659386b669751f6187b8d938afee183555cfd1f4e609cbcac";
+            })
+        ];
+
+        refs = mergePackages [
+            eff
+            (githubSource {
+                name = "refs";
+                version = "2.0.0";
+                sha256 = "f144b45e6997a633d0ad97d6d6f3cb7f96507a091fa9128e57e4c4a89d62aad2";
+            })
+        ];
+
+        semirings = mergePackages [
+            lists
+            (githubSource {
+                name = "semirings";
+                version = "3.0.0";
+                sha256 = "036276080e64572ff579f73d4c32f182aa3167bac42afac7acfe740d6d739410";
+            })
+        ];
+
+        sets = mergePackages [
+            maps
+            tailrec
+            (githubSource {
+                name = "sets";
+                version = "2.0.0";
+                sha256 = "44c916a6696fc803ee41a5102c165ea2bc28a7a60c53f67833c363a940c26319";
             })
         ];
 
@@ -462,6 +656,16 @@ rec {
                 name = "strings";
                 version = "2.0.2";
                 sha256 = "1wbxv9ssij3f6i68bynl2pmpah3b9r0vija5djjk74qnq5kp7jzj";
+            })
+        ];
+
+        symbols = mergePackages [
+            prelude
+            unsafe-coerce
+            (githubSource {
+                name = "symbols";
+                version = "2.0.0";
+                sha256 = "39ad0afaf69d795067c6c3690dfab5d339309f5756fc10fb0f6c2380d415eb61";
             })
         ];
 
@@ -498,6 +702,14 @@ rec {
             })
         ];
 
+        type-equality = mergePackages [
+            (githubSource {
+                name = "type-equality";
+                version = "1.0.0";
+                sha256 = "11cafe7678a09f1b04e151d66c51e81b0a3196155c1b1a4767e2f4aa7d04fd78";
+            })
+        ];
+
         unfoldable = mergePackages [
             partial
             tuples
@@ -515,6 +727,15 @@ rec {
 		sha256 = "b72cad40db46648454c67ad1c9ffdd7620961cfd11ca03707a9ab6029a3d644f";
 	    })
 	];
+
+        validation = mergePackages [
+            bifunctors
+            (githubSource {
+                name = "validation";
+                version = "2.0.0";
+                sha256 = "138c0c8b6f42fd95ef6a5c198811a19bfadc7331eb09d60edd17ffd96fc07910";
+            })
+        ];
 
         contrib = rec {
 
