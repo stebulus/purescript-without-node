@@ -7,11 +7,12 @@
 }:
 rec {
 
-    purescript = stdenv.mkDerivation {
-        name = "purescript-0.8.5";
+    purescript = stdenv.mkDerivation (rec {
+        name = "purescript-${version}";
+        version = "0.10.2";
         src = fetchurl {
-            url = https://github.com/purescript/purescript/archive/v0.8.5.tar.gz;
-            sha256 = "352c0c311710907d112e5d2745e7b152adc4d7b23aff3f069c463eceedddec17";
+            url = "https://github.com/purescript/purescript/archive/v${version}.tar.gz";
+            sha256 = "4b5663e2a5ebb7a2e432f951d0a5d0ddfa08f18304827ec33f609d9b3c1c3fe7";
         };
         executables = [
             "psc"
@@ -27,7 +28,7 @@ rec {
             ''
             source $stdenv/setup
             tar zxf $src
-            cd purescript-0.8.5
+            cd purescript-${version}
             cabal --config-file=cabal.config build
             mkdir -p $out/bin
             for f in $executables; do
@@ -37,47 +38,57 @@ rec {
             '';
         buildInputs = [
             cabal-install
-            (ghcWithPackages (pkgs: with pkgs; [
-                aeson
-                aeson-better-errors
-                ansi-wl-pprint
-                base-compat
-                bower-json
-                boxes
-                dlist
-                edit-distance
-                fsnotify
-                Glob
-                http-types
-                language-javascript
-                lifted-base
-                monad-control
-                monad-logger
-                mtl
-                network
-                optparse-applicative
-                parallel
-                parsec
-                pattern-arrows
-                pipes
-                pipes-http
-                regex-tdfa
-                safe
-                semigroups
-                sourcemap
-                spdx
-                split
-                stm
-                syb
-                text
-                transformers-base
-                transformers-compat
-                unordered-containers
-                utf8-string
-                vector
-            ]))
+            (ghcWithPackages (pkgs:
+                with pkgs;
+                with (import overrides/together.nix { inherit pkgs; });
+                [
+                    aeson-better-errors
+                    aeson-pretty
+                    ansi-terminal
+                    ansi-wl-pprint
+                    base-compat
+                    bower-json
+                    boxes
+                    clock
+                    data-ordlist
+                    edit-distance
+                    file-embed
+                    fsnotify
+                    Glob
+                    http-client
+                    http-types
+                    language-javascript
+                    lens
+                    lifted-base
+                    monad-control
+                    monad-logger
+                    network
+                    optparse-applicative
+                    parallel
+                    parsec
+                    pattern-arrows
+                    pipes
+                    pipes-http
+                    protolude
+                    regex-tdfa
+                    safe
+                    sourcemap
+                    spdx
+                    split
+                    stm
+                    system-filepath
+                    transformers-base
+                    transformers-compat
+                    turtle
+                    utf8-string
+                    wai
+                    wai-websockets
+                    warp
+                    websockets
+                ]
+            ))
         ];
-    };
+    });
 
     githubSource = { name, version, sha256 }:
         stdenv.mkDerivation {
@@ -154,7 +165,7 @@ rec {
             source $stdenv/setup
             link-merge purs $out $packages
             link-merge output $out $packages
-            psc --output $out/output $out/purs/'**/*.'{purs,js}
+            psc --output $out/output $out/purs/'**/*'.purs
             '';
     };
 
@@ -163,23 +174,23 @@ rec {
             eff
             (githubSource {
                 name = "console";
-                version = "0.1.1";
-                sha256 = "9d1bed960d63d93c4bafd8a9e46229244625f5218eaaa1b672121a496da4b912";
+                version = "2.0.0";
+                sha256 = "0raqjwkdgl788lphljwmrzkpyaah60hra3nnb9wbhbf5qdk86c6k";
             })
         ];
         eff = mergePackages [
             prelude
             (githubSource {
                 name = "eff";
-                version = "0.1.1";
-                sha256 = "8f309918c9b7ff26542209756b2467ac9c6bbb81fb0a82f1ff3ce190c3f49c4c";
+                version = "2.0.0";
+                sha256 = "0kxi5d7cqv3a7q9d8sskjpr8bccw1l2g4y4a8yjcwk4hyamn5w1p";
             })
         ];
         prelude = mergePackages [
             (githubSource {
                 name = "prelude";
-                version = "1.1.0";
-                sha256 = "5c931068e33fe9c08fc36bbad0e20701a919f14cc76be2dc146dae9f126ebfab";
+                version = "2.1.0";
+                sha256 = "1pmiffdigp5hj22mwsl6wapj8ykn5an42ksn6w3cdd1m0m6jl8f1";
             })
         ];
     };
@@ -229,7 +240,7 @@ rec {
             d=$(outputdir "$@")
             @coreutils@/bin/mkdir -p "$d"
             @coreutils@/bin/cp -a @mergedPackages@/output/* "$d"
-            @purescript@/bin/psc @mergedPackages@/purs/'**/*.'{js,purs} "$@"
+            @purescript@/bin/psc @mergedPackages@/purs/'**/*'.purs "$@"
             '';
         mergedPackages = mergePackages (choosePackages packages);
     };
