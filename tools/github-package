@@ -1,0 +1,61 @@
+#!/bin/bash
+set -euo pipefail
+
+case $# in
+    1)  owner=purescript
+        name=$1
+        ;;
+    2)  owner=$1
+        name=$2
+        ;;
+    *)  echo "usage: $0 [owner] package" >&2
+        exit 2
+        ;;
+esac
+
+githubbase=https://github.com/"$owner"/purescript-"$name"
+
+quote_keywords() {
+    sed 's,\b\(assert\|else\|inherit\|if\|then\|with\)\b,"\1",g'
+}
+
+unset tmp
+trap 'if [ -v tmp ]; then rm -rf "$tmp"; fi' EXIT
+tmp=$(mktemp --tmpdir -d)
+
+version=$(curl -sS -D- -o/dev/null "$githubbase"/releases/latest |
+    tr -d '\r' |
+    grep -i '^Location:' |
+    sed 's,.*/v,,')
+wget -q -O "$tmp"/tarball "$githubbase"/archive/v"$version".tar.gz
+hash=$(sha256sum "$tmp"/tarball |cut -d' ' -f1)
+tar -C "$tmp" -zxf "$tmp"/tarball "purescript-$name-$version/bower.json"
+
+echo "$name = compile {" |quote_keywords
+cat <<EOF
+    package = githubSource {
+        name = "$name";
+        version = "$version";
+        sha256 = "$hash";
+EOF
+
+if [ "$owner" != purescript ]; then
+    cat <<EOF
+        owner = "$owner";
+EOF
+fi
+
+cat <<EOF
+    };
+    dependencies = [
+EOF
+
+jq -r '(.dependencies // {}) | keys | .[]' \
+    "$tmp/purescript-$name-$version"/bower.json |
+sed 's,^purescript-,        ,' |
+quote_keywords
+
+cat <<EOF
+    ];
+};
+EOF
