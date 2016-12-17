@@ -698,6 +698,143 @@ validation = compilePackage {
 
 contrib = rec {
 
+    argonaut = compilePackage {
+        package = githubSource {
+            name = "argonaut";
+            version = "2.0.0";
+            sha256 = "bcf15ba1d8d87dfad12ae95f6c7de2b05bf8fab8bdde4973cd5e9542de68841c";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            argonaut-codecs
+            argonaut-core
+            argonaut-traversals
+        ];
+    };
+
+    argonaut-codecs = compilePackage {
+        package = githubSource {
+            name = "argonaut-codecs";
+            version = "2.0.0";
+            sha256 = "06984ff4f87b669171ec3b3aa2c2deb6288e1f0eea6831d4107b6221b337aba5";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            argonaut-core
+            generics
+            integers
+        ];
+    };
+
+    argonaut-core = compilePackage {
+        package = githubSource {
+            name = "argonaut-core";
+            version = "2.0.1";
+            sha256 = "e565710c626b4304389959eba872b95bcb01213e7879f1efa76b2d2ca82005cc";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            enums
+            functions
+            maps
+        ];
+    };
+
+    argonaut-traversals = compilePackage {
+        package = githubSource {
+            name = "argonaut-traversals";
+            version = "2.0.1";
+            sha256 = "7994fbb86913149e0d7b53ecef5c13d7039355a819e5fa595a031e03b27cd74e";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            argonaut-codecs
+            profunctor-lenses
+        ];
+    };
+
+    arraybuffer-types = compilePackage {
+        package = githubSource {
+            name = "arraybuffer-types";
+            version = "0.2.0";
+            sha256 = "8bb19dedd57d33753bbc7817c08599b35c5db7e9826cc1cd6dca66240ab6e3d2";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+        ];
+    };
+
+    base = compilePackage {
+        package = githubSource {
+            name = "base";
+            version = "1.0.0";
+            sha256 = "159d48dc20b52dfd8872d9b2d2c1a8eecdc26074ff6a4f7b2ffd9913eaa5a348";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            console
+            control
+            either
+            enums
+            foldable-traversable
+            integers
+            lists
+            math
+            maybe
+            monoid
+            strings
+            tuples
+            unfoldable
+        ];
+    };
+
+    canvas = compilePackage {
+        package = githubSource {
+            name = "canvas";
+            version = "1.0.0";
+            sha256 = "42161a69084cce9adb4dfac05f1f7bfb2b3ce53bcb08ef8cc1ab078da4aec48a";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arraybuffer-types
+            eff
+            exceptions
+            functions
+            maybe
+        ];
+    };
+
+    colors = compilePackage {
+        package = githubSource {
+            name = "colors";
+            version = "2.1.0";
+            sha256 = "7e57dc8f9e1ff4a7f1db4a22597d227063411fd488851b9a737788ec6efe0628";
+            owner = "sharkdp";
+        };
+        dependencies = [
+            arrays
+            integers
+            lists
+            partial
+            strings
+        ];
+    };
+
+    coroutines = compilePackage {
+        package = githubSource {
+            name = "coroutines";
+            version = "3.1.0";
+            sha256 = "bff06b5e9d4116b1a2e581fe458942489b892e8b8b433fd28e8acb892fa790dd";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            freet
+            parallel
+            profunctor
+        ];
+    };
+
     dom = compilePackage {
         package = githubSource {
             name = "dom";
@@ -719,6 +856,117 @@ contrib = rec {
         ];
     };
 
+    drawing = compilePackage {
+        package = githubSource {
+            name = "drawing";
+            version = "2.1.0";
+            sha256 = "df11f18abb9e559cb2817f0cbddc11ffae893ff4fdc509bb6ca88d0279dc5a18";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            canvas
+            colors
+            integers
+            lists
+            math
+        ];
+    };
+
+    eff-functions = compilePackage {
+        package = githubSource {
+            name = "eff-functions";
+            version = "2.0.0";
+            sha256 = "27eca41aa6e6987e9c56e93597af0fe220562e81cbb1e726d5c0a844c395cfc8";
+            owner = "hdgarrood";
+        };
+        dependencies = [
+            eff
+        ];
+    };
+
+    foreign-lens = compilePackage {
+        package = githubSource {
+            name = "foreign-lens";
+            version = "2.0.0";
+            sha256 = "09fc2a3c2ecb210afbf9e9de9c5d55a1e9fe1205d80eb3f199514b4811ef1c38";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            foreign
+            profunctor-lenses
+        ];
+    };
+
+    form-urlencoded = compilePackage {
+        package = githubSource {
+            name = "form-urlencoded";
+            version = "2.0.0";
+            sha256 = "7f5c1adb05e8b80386e0150a62bedd03779dbedc26bc78e85cb35bbe804a5a85";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            generics
+            globals
+            maybe
+            prelude
+            strings
+            tuples
+        ];
+    };
+
+    freet = compilePackage {
+        package = githubSource {
+            name = "freet";
+            version = "2.0.1";
+            sha256 = "24037fa205d332b4d2b4e91fe802d10e6c1a70e83f0bf61bdd7df6a7154cdf44";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            console
+            control
+            exists
+            tailrec
+            transformers
+        ];
+    };
+
+    handlebars = compilePackage {
+        package = githubSource {
+            name = "handlebars";
+            version = "1.0.0";
+            sha256 = "6b622245a061084480d71ac663990ca0c2fa2279ef11b7f2c94bae58fec4ab5b";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+        ];
+    };
+
+    http-methods = compilePackage {
+        package = githubSource {
+            name = "http-methods";
+            version = "2.0.0";
+            sha256 = "9ae4f94a9f496e257edb5f60cc8f015b291968568b6e1beb031b425201f75091";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            generics
+        ];
+    };
+
+    jquery = compilePackage {
+        package = githubSource {
+            name = "jquery";
+            version = "1.0.0";
+            sha256 = "628156ee0cc9385c8b975670b81679ddccb2cce29078eadea4c89ac21a0ce857";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            dom
+            eff
+            foreign
+        ];
+    };
+
     js-date = compilePackage {
         package = githubSource {
             name = "js-date";
@@ -734,6 +982,50 @@ contrib = rec {
         ];
     };
 
+    js-timers = compilePackage {
+        package = githubSource {
+            name = "js-timers";
+            version = "2.0.0";
+            sha256 = "f3a1247b18caf6765e108247f3c3eea7b071d77be851aeae1b75fed2724d6add";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            eff
+        ];
+    };
+
+    lens = compilePackage {
+        package = githubSource {
+            name = "lens";
+            version = "2.0.0";
+            sha256 = "f002a4d3f3609591b27fb848c0a8a8511ab26d5af5088148ec4153467e6ae8c6";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            const
+            distributive
+            profunctor
+        ];
+    };
+
+    machines = compilePackage {
+        package = githubSource {
+            name = "machines";
+            version = "3.0.0";
+            sha256 = "a1ca2ddcbff9363a49f8dd8243a6be6909fc1e6bb10c3081891e2f20adf2a76f";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            eff
+            lists
+            maybe
+            monoid
+            profunctor
+            tuples
+        ];
+    };
+
     media-types = compilePackage {
         package = githubSource {
             name = "media-types";
@@ -743,6 +1035,19 @@ contrib = rec {
         };
         dependencies = [
             generics
+        ];
+    };
+
+    now = compilePackage {
+        package = githubSource {
+            name = "now";
+            version = "2.0.0";
+            sha256 = "7adc9e3e39d10f445ba7504faf19b43c74d47625d0c39695b7e8840fcb094808";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            datetime
+            eff
         ];
     };
 
@@ -756,6 +1061,206 @@ contrib = rec {
         dependencies = [
             functions
             maybe
+        ];
+    };
+
+    options = compilePackage {
+        package = githubSource {
+            name = "options";
+            version = "2.0.0";
+            sha256 = "4b69be5e2f12f530cb01f76aed36fff48c1e2eb77673d87d398bbccf1882dd1e";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            contravariant
+            foreign
+            maps
+            maybe
+            monoid
+            tuples
+        ];
+    };
+
+    parsing = compilePackage {
+        package = githubSource {
+            name = "parsing";
+            version = "3.0.1";
+            sha256 = "8ddc26dccab248b21ffdc0f62b16a4c5627121384b1e796b52385ca171d1bac4";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            either
+            foldable-traversable
+            identity
+            integers
+            lists
+            maybe
+            strings
+            transformers
+            unicode
+        ];
+    };
+
+    precise = compilePackage {
+        package = githubSource {
+            name = "precise";
+            version = "1.0.1";
+            sha256 = "39ba506e472d18cdc909886c87ef62656b29272821a240502715027741fe99b9";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            globals
+            integers
+            quickcheck
+            strings
+        ];
+    };
+
+    profunctor-lenses = compilePackage {
+        package = githubSource {
+            name = "profunctor-lenses";
+            version = "2.1.0";
+            sha256 = "9a546233c3c7e4a967690c4dd8b88303456a209174a7559f2d002850cc696145";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            const
+            functors
+            identity
+            profunctor
+            sets
+            transformers
+            unsafe-coerce
+        ];
+    };
+
+    react = compilePackage {
+        package = githubSource {
+            name = "react";
+            version = "1.3.0";
+            sha256 = "8dc497b18c71014b3b47df0d65f0eb046dedb071eb2bd87667d87f1d9c315e31";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            eff
+            prelude
+            unsafe-coerce
+        ];
+    };
+
+    react-addons-css-transition-group = compilePackage {
+        package = githubSource {
+            name = "react-addons-css-transition-group";
+            version = "0.2.1";
+            sha256 = "5faabc81d1028e9c59aee96f1ba5ecabb38912d61fa5c82b3c7c211de1abaed1";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            react
+        ];
+    };
+
+    react-dom = compilePackage {
+        package = githubSource {
+            name = "react-dom";
+            version = "1.0.0";
+            sha256 = "f4cc06e6178fe0e6d3f75eefd90d5b88d1dce0d853df4217cc1ca503c65ccd6c";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            dom
+            eff-functions
+            react
+        ];
+    };
+
+    sammy = compilePackage {
+        package = githubSource {
+            name = "sammy";
+            version = "1.0.0";
+            sha256 = "f17ce933b9723b6c21db8b3bafd3561dca0c992ea0846f834388f83226783e10";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            eff
+        ];
+    };
+
+    string-parsers = compilePackage {
+        package = githubSource {
+            name = "string-parsers";
+            version = "2.0.0";
+            sha256 = "40b9d5808f11dc2e8a39c0fb3721ee9b10a10ff70d54a7da608af0f892c26cf1";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            control
+            either
+            foldable-traversable
+            lists
+            maybe
+            strings
+            tailrec
+        ];
+    };
+
+    strongcheck = compilePackage {
+        package = githubSource {
+            name = "strongcheck";
+            version = "2.0.1";
+            sha256 = "a1fdaac9bf5dde483bd13440cf578f44dc205d093606b6f10970642faf9d24bd";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            arrays
+            console
+            enums
+            exceptions
+            free
+            machines
+            random
+        ];
+    };
+
+    strongcheck-argonaut = compilePackage {
+        package = githubSource {
+            name = "strongcheck-argonaut";
+            version = "1.0.0";
+            sha256 = "08663f3994c2e4680a368501846ddce12e728560042961b36d73b7a0b8cddb0b";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            argonaut
+            strongcheck
+        ];
+    };
+
+    these = compilePackage {
+        package = githubSource {
+            name = "these";
+            version = "2.0.0";
+            sha256 = "14e338acae9aff7b3272e7b7ebac81a6492521d4e6108d13156feae1ed7cc7d5";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            generics
+        ];
+    };
+
+    unicode = compilePackage {
+        package = githubSource {
+            name = "unicode";
+            version = "2.0.1";
+            sha256 = "1f8039563211ef7518033d02bcd7a4718536e8c521cdb07b883b6c799f96e56e";
+            owner = "purescript-contrib";
+        };
+        dependencies = [
+            maybe
+            foldable-traversable
+            strings
         ];
     };
 
