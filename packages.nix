@@ -376,16 +376,6 @@ lists = compilePackage {
     ];
 };
 
-math = compilePackage {
-    package = githubSource {
-        name = "math";
-        version = "2.0.0";
-        sha256 = "3f31609f7005393af461d472edb45c0e99d70ce669af8474cbbd6105cdbbf4b2";
-    };
-    dependencies = [
-    ];
-};
-
 maps = compilePackage {
     package = githubSource {
         name = "maps";
@@ -397,6 +387,16 @@ maps = compilePackage {
         functions
         lists
         st
+    ];
+};
+
+math = compilePackage {
+    package = githubSource {
+        name = "math";
+        version = "2.0.0";
+        sha256 = "3f31609f7005393af461d472edb45c0e99d70ce669af8474cbbd6105cdbbf4b2";
+    };
+    dependencies = [
     ];
 };
 
@@ -510,6 +510,35 @@ proxy = compilePackage {
         sha256 = "220ef0ff8a74f8aed2fd029e52b92b355980ed1bbe1989acaaa846cb177b00b6";
     };
     dependencies = [
+    ];
+};
+
+psci-support = compilePackage {
+    package = githubSource {
+        name = "psci-support";
+        version = "2.0.0";
+        sha256 = "7102644e5eb3f29ae718244041f4c9a3058bb8221de3685af85a3dd1437479c6";
+    };
+    dependencies = [
+        console
+    ];
+};
+
+quickcheck = compilePackage {
+    package = githubSource {
+        name = "quickcheck";
+        version = "3.1.1";
+        sha256 = "5847144ac8869a09a04c187fda027f6c22c070657bce04cfbea3fbd53cfc1868";
+    };
+    dependencies = [
+        arrays
+        console
+        either
+        exceptions
+        lists
+        random
+        strings
+        transformers
     ];
 };
 
