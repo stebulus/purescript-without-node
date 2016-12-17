@@ -1,0 +1,626 @@
+{ compile , githubSource }: rec {
+
+arrays = compile [
+    foldable-traversable
+    nonempty
+    partial
+    st
+    tailrec
+    tuples
+    unfoldable
+    (githubSource {
+        name = "arrays";
+        version = "3.1.0";
+        sha256 = "0z990j7f3p24wqc6pd8fmpx61b3b51xxdjzghiiixazxp53spjq5";
+    })
+];
+
+"assert" = compile [
+    eff
+    (githubSource {
+        name = "assert";
+        version = "2.0.0";
+        sha256 = "6516001fa2f0b4d07fc8ae549b5ac59c8f36ddfbfd8215ede3b56fd3784fa2e7";
+    })
+];
+
+bifunctors = compile [
+    control
+    newtype
+    (githubSource {
+        name = "bifunctors";
+        version = "2.0.0";
+        sha256 = "1gfvyw95x523gmpvh8qav7bq2rnp19xmczg9ivcxv243w6d89cwx";
+    })
+];
+
+catenable-lists = compile [
+    control
+    foldable-traversable
+    lists
+    tuples
+    unfoldable
+    (githubSource {
+        name = "catenable-lists";
+        version = "3.0.1";
+        sha256 = "0cc03bdce06e4ff8eb58e8bc9de0e95ad8c70f3f8656dfc9a68f8566126d9cc6";
+    })
+];
+
+console = compile [
+    eff
+    (githubSource {
+        name = "console";
+        version = "2.0.0";
+        sha256 = "0raqjwkdgl788lphljwmrzkpyaah60hra3nnb9wbhbf5qdk86c6k";
+    })
+];
+
+const = compile [
+    contravariant
+    foldable-traversable
+    (githubSource {
+        name = "const";
+        version = "2.0.0";
+        sha256 = "39086e2376d8a9d01fb718e407db6c27d5a481970103476d1a1b4a069d040145";
+    })
+];
+
+contravariant = compile [
+    either
+    monoid
+    tuples
+    (githubSource {
+        name = "contravariant";
+        version = "2.0.0";
+        sha256 = "e4a11a3e511da89dcd15250b2ab981f6af436d33a915da389099777a97d8ff83";
+    })
+];
+
+control = compile [
+    prelude
+    (githubSource {
+        name = "control";
+        version = "2.0.0";
+        sha256 = "07rvmhp6942pcng67mpva1nmi59aj2mayzi2m3311f430pc25v9i";
+    })
+];
+
+datetime = compile [
+    enums
+    functions
+    generics
+    integers
+    math
+    (githubSource {
+        name = "datetime";
+        version = "2.0.0";
+        sha256 = "e1760e6e842881b7f272dc8041d8439e3185444638baf69264bc1d0f72d5b0b9";
+    })
+];
+
+distributive = compile [
+    identity
+    (githubSource {
+        name = "distributive";
+        version = "2.0.0";
+        sha256 = "d9ac7889550699e0ba61c974f6952b2d8922d42903a286ca69a65d8f92bc8532";
+    })
+];
+
+eff = compile [
+    prelude
+    (githubSource {
+        name = "eff";
+        version = "2.0.0";
+        sha256 = "0kxi5d7cqv3a7q9d8sskjpr8bccw1l2g4y4a8yjcwk4hyamn5w1p";
+    })
+];
+
+either = compile [
+    foldable-traversable
+    (githubSource {
+        name = "either";
+        version = "2.0.0";
+        sha256 = "009vnssmqp2vj1x1c9sp9kx62ax58bmpm0pv10qrmw9ppmhlgh1h";
+    })
+];
+
+enums = compile [
+    control
+    strings
+    tuples
+    unfoldable
+    (githubSource {
+        name = "enums";
+        version = "2.0.1";
+        sha256 = "0lr9vj111i4zwzq41mz898grkadjq45pfpm6gxk2z6zysw8gf01n";
+    })
+];
+
+exceptions = compile [
+    eff
+    either
+    maybe
+    (githubSource {
+        name = "exceptions";
+        version = "2.0.0";
+        sha256 = "4d9076bb7c1627bbb081c2f0b38bf03692a57fa242d0c35d4a59df1bfd48537d";
+    })
+];
+
+exists = compile [
+    unsafe-coerce
+    (githubSource {
+        name = "exists";
+        version = "2.0.0";
+        sha256 = "8be8ba318df4fe7eac00ba5d0661aed7cbdd15c3816b541f2d6947d6fe22ea39";
+    })
+];
+
+foldable-traversable = compile [
+    bifunctors
+    maybe
+    (githubSource {
+        name = "foldable-traversable";
+        version = "2.0.0";
+        sha256 = "0a046g6aa99ayhxl510mdmkga5gy4fh3sc1ccxbvc8r11gd24pvf";
+    })
+];
+
+foreign = compile [
+    arrays
+    either
+    foldable-traversable
+    functions
+    integers
+    lists
+    strings
+    transformers
+    (githubSource {
+        name = "foreign";
+        version = "3.0.1";
+        sha256 = "0x188ivz3dp1gx8njzxjl40yafsjy533cakrz9w09zgrcw9vi57r";
+    })
+];
+
+free = compile [
+    catenable-lists
+    exists
+    inject
+    transformers
+    unsafe-coerce
+    (githubSource {
+        name = "free";
+        version = "3.0.1";
+        sha256 = "1e375529bfa033bc9dd9f8e586d816d8196cbcd94ba2e98fbaf25cdcf75903eb";
+    })
+];
+
+functions = compile [
+    prelude
+    (githubSource {
+        name = "functions";
+        version = "2.0.0";
+        sha256 = "1m417pz272bf4ailqjb0xpx6j6r0sblydia431vzvfpm1gzk6125";
+    })
+];
+
+functors = compile [
+    const
+    either
+    (githubSource {
+        name = "functors";
+        version = "1.0.0";
+        sha256 = "3f00f8944d0c89a9c57263b036173e1d4f1a208cf2fd0c58d44e244fda4b7f0d";
+    })
+];
+
+generics = compile [
+    arrays
+    either
+    identity
+    proxy
+    strings
+    (githubSource {
+        name = "generics";
+        version = "3.1.0";
+        sha256 = "01kjqb7kcn3wywzjxzr7qqivhdnvh8xxw0srklfcqz5yj87ak03b";
+    })
+];
+
+generics-rep = compile [
+    monoid
+    prelude
+    (githubSource {
+        name = "generics-rep";
+        version = "3.0.0";
+        sha256 = "224928091b5ce4b191db5b45802fa31bb611f84321873c47aa3afdfa74381924";
+    })
+];
+
+globals = compile [
+    (githubSource {
+        name = "globals";
+        version = "2.0.0";
+        sha256 = "290fbbfb54c07708932e285172c43e7d08fde8796ad56f978b2dc62aeb8e0f2f";
+    })
+];
+
+graphs = compile [
+    catenable-lists
+    sets
+    (githubSource {
+        name = "graphs";
+        version = "2.0.0";
+        sha256 = "2455a0448b8f713d6aeb2c40e5c5a4beb6c17a5328bc278edb1b60e36b5e6c16";
+    })
+];
+
+identity = compile [
+    foldable-traversable
+    (githubSource {
+        name = "identity";
+        version = "2.0.0";
+        sha256 = "60828516e975a2415bbd9455b81ad55a650a8e78aed40d1b8abf7ac348e0f268";
+    })
+];
+
+inject = compile [
+    functors
+    (githubSource {
+        name = "inject";
+        version = "3.0.0";
+        sha256 = "461cf3311acc07a7f8a5b11a9cb02cfac09fbe89bd1702e36a98eccbd2f0f08e";
+    })
+];
+
+integers = compile [
+    maybe
+    math
+    partial
+    (githubSource {
+        name = "integers";
+        version = "2.1.0";
+        sha256 = "1haxg58nxhq7zwp5i17gn55xqpqiq7iffyr8rj2i42qdwbz6gng5";
+    })
+];
+
+invariant = compile [
+    prelude
+    (githubSource {
+        name = "invariant";
+        version = "2.0.0";
+        sha256 = "15wc8al429p8fp3s36largrhk8jrc4pbyc776d1cq2163wy07cvb";
+    })
+];
+
+lazy = compile [
+    monoid
+    (githubSource {
+        name = "lazy";
+        version = "2.0.0";
+        sha256 = "1j1g6xnigmqwvc3bcx0ipzrbbzkvfwrbdh849fwybc6mdbjbjam6";
+    })
+];
+
+lists = compile [
+    generics
+    lazy
+    unfoldable
+    (githubSource {
+        name = "lists";
+        version = "3.2.1";
+        sha256 = "1m5f1p1yqa34dwxq67l7cqz3r3dnmpljjcy5hck0pd67rkcs5ifi";
+    })
+];
+
+math = compile [
+    (githubSource {
+        name = "math";
+        version = "2.0.0";
+        sha256 = "3f31609f7005393af461d472edb45c0e99d70ce669af8474cbbd6105cdbbf4b2";
+    })
+];
+
+maps = compile [
+    arrays
+    functions
+    lists
+    st
+    (githubSource {
+        name = "maps";
+        version = "2.0.1";
+        sha256 = "8db4b97fd7653a49827c6a111527c9fbfe3c8929b592b1dab00c451d23b89aa7";
+    })
+];
+
+maybe = compile [
+    control
+    invariant
+    monoid
+    (githubSource {
+        name = "maybe";
+        version = "2.0.1";
+        sha256 = "1xmn3i3d90nwwy28plyaasxxwxkiq84f12jzxdckw79386j1xg1s";
+    })
+];
+
+monoid = compile [
+    control
+    invariant
+    newtype
+    (githubSource {
+        name = "monoid";
+        version = "2.2.0";
+        sha256 = "1azax4i5l0zsiw44nfdl2m1bpjbicpzs0kxb6rdv3xwjmaqc3l0y";
+    })
+];
+
+newtype = compile [
+    prelude
+    (githubSource {
+        name = "newtype";
+        version = "1.1.0";
+        sha256 = "0xr5fjcyd4lz6g9fx7dzbcx3swhy2f94wh7k5w4iqsr32h412y6z";
+    })
+];
+
+nonempty = compile [
+    foldable-traversable
+    (githubSource {
+        name = "nonempty";
+        version = "3.0.0";
+        sha256 = "13jpd4b6wa3fjgmchxk4fiyhkdgafswiwivhl82w6kd6slsqid4b";
+    })
+];
+
+orders = compile [
+    monoid
+    (githubSource {
+        name = "orders";
+        version = "2.0.0";
+        sha256 = "c4aedbaa5ed141860b0969bb572edf4188fa974239d795121a3a9dfc3081bdc4";
+    })
+];
+
+parallel = compile [
+    functors
+    refs
+    transformers
+    (githubSource {
+        name = "parallel";
+        version = "2.1.0";
+        sha256 = "6384cb320ab70a1a49f9f11da7a38624bddbbff92730afed10fa5151158dde89";
+    })
+];
+
+partial = compile [
+    (githubSource {
+        name = "partial";
+        version = "1.1.2";
+        sha256 = "0kl7m1bvxyy7wnrghkkvdxqx9m6yr6iyndccda7bwzl2lkwf05ac";
+    })
+];
+
+prelude = compile [
+    (githubSource {
+        name = "prelude";
+        version = "2.1.0";
+        sha256 = "1pmiffdigp5hj22mwsl6wapj8ykn5an42ksn6w3cdd1m0m6jl8f1";
+    })
+];
+
+profunctor = compile [
+    distributive
+    either
+    tuples
+    (githubSource {
+        name = "profunctor";
+        version = "2.0.0";
+        sha256 = "e3423c4ca7f6b3de8d54953abe0cd1781c3438296ab3ed5f642e705dafc68152";
+    })
+];
+
+proxy = compile [
+    (githubSource {
+        name = "proxy";
+        version = "1.0.0";
+        sha256 = "220ef0ff8a74f8aed2fd029e52b92b355980ed1bbe1989acaaa846cb177b00b6";
+    })
+];
+
+random = compile [
+    eff
+    integers
+    math
+    (githubSource {
+        name = "random";
+        version = "2.0.0";
+        sha256 = "2c53e95939d71d8659386b669751f6187b8d938afee183555cfd1f4e609cbcac";
+    })
+];
+
+refs = compile [
+    eff
+    (githubSource {
+        name = "refs";
+        version = "2.0.0";
+        sha256 = "f144b45e6997a633d0ad97d6d6f3cb7f96507a091fa9128e57e4c4a89d62aad2";
+    })
+];
+
+semirings = compile [
+    lists
+    (githubSource {
+        name = "semirings";
+        version = "3.0.0";
+        sha256 = "036276080e64572ff579f73d4c32f182aa3167bac42afac7acfe740d6d739410";
+    })
+];
+
+sets = compile [
+    maps
+    tailrec
+    (githubSource {
+        name = "sets";
+        version = "2.0.0";
+        sha256 = "44c916a6696fc803ee41a5102c165ea2bc28a7a60c53f67833c363a940c26319";
+    })
+];
+
+st = compile [
+    eff
+    (githubSource {
+        name = "st";
+        version = "2.0.0";
+        sha256 = "0xhpnw8dq2k3aigv6a2vii53hbj497p52ypij9n3n3s8ncya0a72";
+    })
+];
+
+strings = compile [
+    either
+    maybe
+    (githubSource {
+        name = "strings";
+        version = "2.0.2";
+        sha256 = "1wbxv9ssij3f6i68bynl2pmpah3b9r0vija5djjk74qnq5kp7jzj";
+    })
+];
+
+symbols = compile [
+    prelude
+    unsafe-coerce
+    (githubSource {
+        name = "symbols";
+        version = "2.0.0";
+        sha256 = "39ad0afaf69d795067c6c3690dfab5d339309f5756fc10fb0f6c2380d415eb61";
+    })
+];
+
+tailrec = compile [
+    identity
+    either
+    st
+    partial
+    (githubSource {
+        name = "tailrec";
+        version = "2.0.1";
+        sha256 = "1lglhkq8ni8x9mv0k9g8na3ny5aqk44ijh7h87pxxxfndky10fbm";
+    })
+];
+
+transformers = compile [
+    arrays
+    lazy
+    distributive
+    tuples
+    (githubSource {
+        name = "transformers";
+        version = "2.0.2";
+        sha256 = "1ghbyjnnkkasgwi07fyz6gcv4g35hmpwrgbmm5pa2p7zmlhfy2vc";
+    })
+];
+
+tuples = compile [
+    foldable-traversable
+    (githubSource {
+        name = "tuples";
+        version = "3.0.0";
+        sha256 = "0gippg8aaa77qsl7im4crqx2993k6xlz8z4iyld9axc0wqwas3px";
+    })
+];
+
+type-equality = compile [
+    (githubSource {
+        name = "type-equality";
+        version = "1.0.0";
+        sha256 = "11cafe7678a09f1b04e151d66c51e81b0a3196155c1b1a4767e2f4aa7d04fd78";
+    })
+];
+
+unfoldable = compile [
+    partial
+    tuples
+    (githubSource {
+        name = "unfoldable";
+        version = "2.0.0";
+        sha256 = "1c29klc4dbv8hmmnwaqfg475sg53156cms1azymsfzk0baislpxl";
+    })
+];
+
+unsafe-coerce = compile [
+    (githubSource {
+        name = "unsafe-coerce";
+        version = "2.0.0";
+        sha256 = "b72cad40db46648454c67ad1c9ffdd7620961cfd11ca03707a9ab6029a3d644f";
+    })
+];
+
+validation = compile [
+    bifunctors
+    (githubSource {
+        name = "validation";
+        version = "2.0.0";
+        sha256 = "138c0c8b6f42fd95ef6a5c198811a19bfadc7331eb09d60edd17ffd96fc07910";
+    })
+];
+
+contrib = rec {
+
+    dom = compile [
+        datetime
+        enums
+        exceptions
+        foldable-traversable
+        foreign
+        js-date
+        media-types
+        nullable
+        prelude
+        unsafe-coerce
+        (githubSource {
+            name = "dom";
+            version = "3.3.0";
+            sha256 = "685152367927f2e15485bec513a21c785129e34e83139f3e736ccf967e0b01b4";
+            owner = "purescript-contrib";
+        })
+    ];
+
+    js-date = compile [
+        datetime
+        exceptions
+        foreign
+        integers
+        (githubSource {
+            name = "js-date";
+            version = "3.0.0";
+            sha256 = "c52a9455a856f6164c4c8a2f843928b6d7411189712681d2cd7a5fbc36f5fc17";
+            owner = "purescript-contrib";
+        })
+    ];
+
+    media-types = compile [
+        generics
+        (githubSource {
+            name = "media-types";
+            version = "2.0.0";
+            sha256 = "a1b44d1c33c04cbb8b67d39bf647f66cbd433b5f70706d65cb2e05c03da73e92";
+            owner = "purescript-contrib";
+        })
+    ];
+
+    nullable = compile [
+        functions
+        maybe
+        (githubSource {
+            name = "nullable";
+            version = "2.0.0";
+            sha256 = "cd55633ad15e46c27bfe849c3475f756c73842645712ba70d27a86a8364ced06";
+            owner = "purescript-contrib";
+        })
+    ];
+
+};
+
+}
