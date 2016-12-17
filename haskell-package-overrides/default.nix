@@ -1,5 +1,4 @@
-{ pkgs }:
-with pkgs;
+{ callPackage }:
 rec {
     connection = callPackage ./connection.nix {
         inherit tls;

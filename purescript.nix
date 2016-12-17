@@ -41,7 +41,7 @@ rec {
             (ghcWithPackages (pkgs:
                 with pkgs;
                 with (import ./haskell-package-overrides
-                  { inherit pkgs; });
+                  { inherit callPackage; });
                 [
                     aeson-better-errors
                     aeson-pretty
