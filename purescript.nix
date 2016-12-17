@@ -158,9 +158,9 @@ rec {
     };
 
     compile = { name, packages }: stdenv.mkDerivation {
-        name = name;
-        buildInputs = [ purescript linkMerge ];
+        inherit name;
         inherit packages;
+        buildInputs = [ purescript linkMerge ];
         builder = builtins.toFile "builder.sh"
             ''
             source $stdenv/setup
