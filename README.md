@@ -6,6 +6,7 @@ A Nix setup for using Purescript without Nodejs.
 
 1. Install [the Nix package manager][nix].
 2. Add [`purescript.nix`](purescript.nix)
+   and [`packages.nix`](packages.nix)
    and [`haskell-package-overrides`](haskell-package-overrides)
    to your project.
 3. Use the functions from `purescript.nix` in your `default.nix`;
