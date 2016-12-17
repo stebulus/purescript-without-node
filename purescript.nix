@@ -157,8 +157,8 @@ rec {
             '';
     };
 
-    compile = packages: stdenv.mkDerivation {
-        name = "compiled-purescript-packages-0.1.0";
+    compile = { name, packages }: stdenv.mkDerivation {
+        name = name;
         buildInputs = [ purescript linkMerge ];
         inherit packages;
         builder = builtins.toFile "builder.sh"
@@ -170,8 +170,13 @@ rec {
             '';
     };
 
+    compilePackage = { package, dependencies }: compile {
+        name = "${package.name}-compiled";
+        packages = [package] ++ dependencies;
+    };
+
     packages = import ./packages.nix {
-        inherit compile;
+        inherit compilePackage;
         inherit githubSource;
     };
 
@@ -222,7 +227,10 @@ rec {
             @coreutils@/bin/cp -a @compiled@/output/* "$d"
             @purescript@/bin/psc @compiled@/purs/'**/*'.purs "$@"
             '';
-        compiled = compile (choosePackages packages);
+        compiled = compile {
+            name = "purescript-packages";
+            packages = (choosePackages packages);
+        };
     };
 
 }
