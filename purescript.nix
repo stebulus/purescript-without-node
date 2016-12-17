@@ -40,7 +40,7 @@ rec {
             cabal-install
             (ghcWithPackages (pkgs:
                 with pkgs;
-                with (import haskell-package-overrides/together.nix
+                with (import ./haskell-package-overrides
                   { inherit pkgs; });
                 [
                     aeson-better-errors
