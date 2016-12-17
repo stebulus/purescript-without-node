@@ -157,8 +157,8 @@ rec {
             '';
     };
 
-    mergePackages = packages: stdenv.mkDerivation {
-        name = "merged-purescript-packages-0.1.0";
+    compile = packages: stdenv.mkDerivation {
+        name = "compiled-purescript-packages-0.1.0";
         buildInputs = [ purescript linkMerge ];
         inherit packages;
         builder = builtins.toFile "builder.sh"
@@ -172,7 +172,7 @@ rec {
 
     packages = rec {
 
-        arrays = mergePackages [
+        arrays = compile [
             foldable-traversable
             nonempty
             partial
@@ -187,7 +187,7 @@ rec {
             })
         ];
 
-        "assert" = mergePackages [
+        "assert" = compile [
             eff
             (githubSource {
                 name = "assert";
@@ -196,7 +196,7 @@ rec {
             })
         ];
 
-        bifunctors = mergePackages [
+        bifunctors = compile [
             control
             newtype
             (githubSource {
@@ -206,7 +206,7 @@ rec {
             })
         ];
 
-        catenable-lists = mergePackages [
+        catenable-lists = compile [
             control
             foldable-traversable
             lists
@@ -219,7 +219,7 @@ rec {
             })
         ];
 
-        console = mergePackages [
+        console = compile [
             eff
             (githubSource {
                 name = "console";
@@ -228,7 +228,7 @@ rec {
             })
         ];
 
-        const = mergePackages [
+        const = compile [
             contravariant
             foldable-traversable
             (githubSource {
@@ -238,7 +238,7 @@ rec {
             })
         ];
 
-        contravariant = mergePackages [
+        contravariant = compile [
             either
             monoid
             tuples
@@ -249,7 +249,7 @@ rec {
             })
         ];
 
-        control = mergePackages [
+        control = compile [
             prelude
             (githubSource {
                 name = "control";
@@ -258,7 +258,7 @@ rec {
             })
         ];
 
-	datetime = mergePackages [
+	datetime = compile [
 	    enums
 	    functions
 	    generics
@@ -271,7 +271,7 @@ rec {
 	    })
 	];
 
-        distributive = mergePackages [
+        distributive = compile [
             identity
             (githubSource {
                 name = "distributive";
@@ -280,7 +280,7 @@ rec {
             })
         ];
 
-        eff = mergePackages [
+        eff = compile [
             prelude
             (githubSource {
                 name = "eff";
@@ -289,7 +289,7 @@ rec {
             })
         ];
 
-        either = mergePackages [
+        either = compile [
             foldable-traversable
             (githubSource {
                 name = "either";
@@ -298,7 +298,7 @@ rec {
             })
         ];
 
-        enums = mergePackages [
+        enums = compile [
             control
             strings
             tuples
@@ -310,7 +310,7 @@ rec {
             })
         ];
 
-	exceptions = mergePackages [
+	exceptions = compile [
 	    eff
 	    either
 	    maybe
@@ -321,7 +321,7 @@ rec {
 	    })
 	];
 
-        exists = mergePackages [
+        exists = compile [
             unsafe-coerce
             (githubSource {
                 name = "exists";
@@ -330,7 +330,7 @@ rec {
             })
         ];
 
-        foldable-traversable = mergePackages [
+        foldable-traversable = compile [
             bifunctors
             maybe
             (githubSource {
@@ -340,7 +340,7 @@ rec {
             })
         ];
 
-        foreign = mergePackages [
+        foreign = compile [
             arrays
             either
             foldable-traversable
@@ -356,7 +356,7 @@ rec {
             })
         ];
 
-        free = mergePackages [
+        free = compile [
             catenable-lists
             exists
             inject
@@ -369,7 +369,7 @@ rec {
             })
         ];
 
-        functions = mergePackages [
+        functions = compile [
             prelude
             (githubSource {
                 name = "functions";
@@ -378,7 +378,7 @@ rec {
             })
         ];
 
-        functors = mergePackages [
+        functors = compile [
             const
             either
             (githubSource {
@@ -388,7 +388,7 @@ rec {
             })
         ];
 
-        generics = mergePackages [
+        generics = compile [
             arrays
             either
             identity
@@ -401,7 +401,7 @@ rec {
             })
         ];
 
-        generics-rep = mergePackages [
+        generics-rep = compile [
             monoid
             prelude
             (githubSource {
@@ -411,7 +411,7 @@ rec {
             })
         ];
 
-        globals = mergePackages [
+        globals = compile [
             (githubSource {
                 name = "globals";
                 version = "2.0.0";
@@ -419,7 +419,7 @@ rec {
             })
         ];
 
-        graphs = mergePackages [
+        graphs = compile [
             catenable-lists
             sets
             (githubSource {
@@ -429,7 +429,7 @@ rec {
             })
         ];
 
-	identity = mergePackages [
+	identity = compile [
 	    foldable-traversable
 	    (githubSource {
 		name = "identity";
@@ -438,7 +438,7 @@ rec {
 	    })
 	];
 
-        inject = mergePackages [
+        inject = compile [
             functors
             (githubSource {
                 name = "inject";
@@ -447,7 +447,7 @@ rec {
             })
         ];
 
-        integers = mergePackages [
+        integers = compile [
             maybe
             math
             partial
@@ -458,7 +458,7 @@ rec {
             })
         ];
 
-        invariant = mergePackages [
+        invariant = compile [
             prelude
             (githubSource {
                 name = "invariant";
@@ -467,7 +467,7 @@ rec {
             })
         ];
 
-        lazy = mergePackages [
+        lazy = compile [
             monoid
             (githubSource {
                 name = "lazy";
@@ -476,7 +476,7 @@ rec {
             })
         ];
 
-        lists = mergePackages [
+        lists = compile [
             generics
             lazy
             unfoldable
@@ -487,7 +487,7 @@ rec {
             })
         ];
 
-        math = mergePackages [
+        math = compile [
             (githubSource {
                 name = "math";
                 version = "2.0.0";
@@ -495,7 +495,7 @@ rec {
             })
         ];
 
-        maps = mergePackages [
+        maps = compile [
             arrays
             functions
             lists
@@ -507,7 +507,7 @@ rec {
             })
         ];
 
-        maybe = mergePackages [
+        maybe = compile [
             control
             invariant
             monoid
@@ -518,7 +518,7 @@ rec {
             })
         ];
 
-        monoid = mergePackages [
+        monoid = compile [
             control
             invariant
             newtype
@@ -529,7 +529,7 @@ rec {
             })
         ];
 
-        newtype = mergePackages [
+        newtype = compile [
             prelude
             (githubSource {
                 name = "newtype";
@@ -538,7 +538,7 @@ rec {
             })
         ];
 
-        nonempty = mergePackages [
+        nonempty = compile [
             foldable-traversable
             (githubSource {
                 name = "nonempty";
@@ -547,7 +547,7 @@ rec {
             })
         ];
 
-        orders = mergePackages [
+        orders = compile [
             monoid
             (githubSource {
                 name = "orders";
@@ -556,7 +556,7 @@ rec {
             })
         ];
 
-        parallel = mergePackages [
+        parallel = compile [
             functors
             refs
             transformers
@@ -567,7 +567,7 @@ rec {
             })
         ];
 
-        partial = mergePackages [
+        partial = compile [
             (githubSource {
                 name = "partial";
                 version = "1.1.2";
@@ -575,7 +575,7 @@ rec {
             })
         ];
 
-        prelude = mergePackages [
+        prelude = compile [
             (githubSource {
                 name = "prelude";
                 version = "2.1.0";
@@ -583,7 +583,7 @@ rec {
             })
         ];
 
-        profunctor = mergePackages [
+        profunctor = compile [
             distributive
             either
             tuples
@@ -594,7 +594,7 @@ rec {
             })
         ];
 
-        proxy = mergePackages [
+        proxy = compile [
             (githubSource {
                 name = "proxy";
                 version = "1.0.0";
@@ -602,7 +602,7 @@ rec {
             })
         ];
 
-        random = mergePackages [
+        random = compile [
             eff
             integers
             math
@@ -613,7 +613,7 @@ rec {
             })
         ];
 
-        refs = mergePackages [
+        refs = compile [
             eff
             (githubSource {
                 name = "refs";
@@ -622,7 +622,7 @@ rec {
             })
         ];
 
-        semirings = mergePackages [
+        semirings = compile [
             lists
             (githubSource {
                 name = "semirings";
@@ -631,7 +631,7 @@ rec {
             })
         ];
 
-        sets = mergePackages [
+        sets = compile [
             maps
             tailrec
             (githubSource {
@@ -641,7 +641,7 @@ rec {
             })
         ];
 
-        st = mergePackages [
+        st = compile [
             eff
             (githubSource {
                 name = "st";
@@ -650,7 +650,7 @@ rec {
             })
         ];
 
-        strings = mergePackages [
+        strings = compile [
             either
             maybe
             (githubSource {
@@ -660,7 +660,7 @@ rec {
             })
         ];
 
-        symbols = mergePackages [
+        symbols = compile [
             prelude
             unsafe-coerce
             (githubSource {
@@ -670,7 +670,7 @@ rec {
             })
         ];
 
-        tailrec = mergePackages [
+        tailrec = compile [
             identity
             either
             st
@@ -682,7 +682,7 @@ rec {
             })
         ];
 
-        transformers = mergePackages [
+        transformers = compile [
             arrays
             lazy
             distributive
@@ -694,7 +694,7 @@ rec {
             })
         ];
 
-        tuples = mergePackages [
+        tuples = compile [
             foldable-traversable
             (githubSource {
                 name = "tuples";
@@ -703,7 +703,7 @@ rec {
             })
         ];
 
-        type-equality = mergePackages [
+        type-equality = compile [
             (githubSource {
                 name = "type-equality";
                 version = "1.0.0";
@@ -711,7 +711,7 @@ rec {
             })
         ];
 
-        unfoldable = mergePackages [
+        unfoldable = compile [
             partial
             tuples
             (githubSource {
@@ -721,7 +721,7 @@ rec {
             })
         ];
 
-	unsafe-coerce = mergePackages [
+	unsafe-coerce = compile [
 	    (githubSource {
 		name = "unsafe-coerce";
 		version = "2.0.0";
@@ -729,7 +729,7 @@ rec {
 	    })
 	];
 
-        validation = mergePackages [
+        validation = compile [
             bifunctors
             (githubSource {
                 name = "validation";
@@ -740,7 +740,7 @@ rec {
 
         contrib = rec {
 
-	    dom = mergePackages [
+	    dom = compile [
 		datetime
 		enums
 		exceptions
@@ -759,7 +759,7 @@ rec {
 		})
 	    ];
 
-	    js-date = mergePackages [
+	    js-date = compile [
 		datetime
 		exceptions
 		foreign
@@ -772,7 +772,7 @@ rec {
 		})
 	    ];
 
-	    media-types = mergePackages [
+	    media-types = compile [
 		generics
 		(githubSource {
 		    name = "media-types";
@@ -782,7 +782,7 @@ rec {
 		})
 	    ];
 
-	    nullable = mergePackages [
+	    nullable = compile [
 		functions
 		maybe
 		(githubSource {
@@ -806,7 +806,7 @@ rec {
             substituteAll $pscWrapper $out/bin/psc
             chmod +x $out/bin/psc
             ln -s $purescript/bin/psc-bundle $out/bin
-            ln -s $mergedPackages/output $out/output
+            ln -s $compiled/output $out/output
             '';
         inherit coreutils;
         inherit purescript;
@@ -841,10 +841,10 @@ rec {
             }
             d=$(outputdir "$@")
             @coreutils@/bin/mkdir -p "$d"
-            @coreutils@/bin/cp -a @mergedPackages@/output/* "$d"
-            @purescript@/bin/psc @mergedPackages@/purs/'**/*'.purs "$@"
+            @coreutils@/bin/cp -a @compiled@/output/* "$d"
+            @purescript@/bin/psc @compiled@/purs/'**/*'.purs "$@"
             '';
-        mergedPackages = mergePackages (choosePackages packages);
+        compiled = compile (choosePackages packages);
     };
 
 }
