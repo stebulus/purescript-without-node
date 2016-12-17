@@ -31,7 +31,7 @@ wget -q -O "$tmp"/tarball "$githubbase"/archive/v"$version".tar.gz
 hash=$(sha256sum "$tmp"/tarball |cut -d' ' -f1)
 tar -C "$tmp" -zxf "$tmp"/tarball "purescript-$name-$version/bower.json"
 
-echo "$name = compile {" |quote_keywords
+echo "$name = compilePackage {" |quote_keywords
 cat <<EOF
     package = githubSource {
         name = "$name";
