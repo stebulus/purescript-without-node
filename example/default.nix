@@ -1,5 +1,5 @@
 let nixpkgs = import <nixpkgs> {};
-    ps = import ../purescript.nix {
+    ps = import ../purescript {
         inherit (nixpkgs) cabal-install;
         inherit (nixpkgs) coreutils;
         inherit (nixpkgs) fetchurl;
