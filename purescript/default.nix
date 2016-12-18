@@ -224,7 +224,7 @@ rec {
             }
             d=$(outputdir "$@")
             @coreutils@/bin/mkdir -p "$d"
-            @coreutils@/bin/cp -a @compiled@/output/* "$d"
+            @coreutils@/bin/cp -an @compiled@/output/* "$d"
             @purescript@/bin/psc @compiled@/purs/'**/*'.purs "$@"
             '';
         compiled = compile {
